@@ -157,13 +157,15 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master unmute 5%+"
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set Master unmute 5%-"
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
-bindsym control+mod1+l exec i3lock --blur=4 -k --timecolor=cccccccc --datecolor=cccccccc
+#bindsym control+mod1+l exec i3lock --blur=4 -k --timecolor=cccccccc --datecolor=cccccccc
+bindsym control+mod1+l exec sh -c "xkb-switch -s us && xsecurelock"
 
 exec --no-startup-id feh --bg-center ~/.config/wallpaper
 exec fcitx &
 exec guake &
-exec compton -b
+exec compton -b --xrender-sync --xrender-sync-fence
 exec_always --no-startup-id ~/.config/i3/polybar.sh
+exec redshift &
 
 exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace-1.json'"
 exec urxvt -name URxvt.vim

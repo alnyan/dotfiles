@@ -46,7 +46,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm i3
 modules-center = xwindow
-modules-right = xbacklight volume battery date
+modules-right = xbacklight volume wlan battery date
 
 tray-position = right
 tray-padding = 4
@@ -155,7 +155,7 @@ type = internal/network
 interface = wlp3s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected> <ramp-signal> <label-connected>
 label-connected = %essid%
 
 format-disconnected = "D"
