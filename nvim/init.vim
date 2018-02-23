@@ -44,7 +44,6 @@ Plug 'alvan/vim-closetag'
 Plug 'crusoexia/vim-monokai'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
