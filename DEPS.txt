@@ -1,0 +1,15 @@
+Dependencies:
+
+* neovim
+* suckless-tools (for dmenu)
+* i3-gaps (github.com/Airblader/i3)
+* polybar (github.com/jaagr/polybar)
+* zsh
+
+zsh dependencies:
+
+* oh-my-zsh
+
+neovim dependencies:
+
+* vim-plug (run :PlugInstall after getting plug)
