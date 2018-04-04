@@ -11,6 +11,8 @@ dep_fail() {
 file_install() {
     k=$(echo ${p} | cut -d: -f1 | xargs readlink -f);
     v="${HOME}/$(echo ${p} | cut -d: -f2)";
+    vd=$(dirname ${v});
+    mkdir -p ${vd};
     if [[ ${2} == "hard" ]]; then
         echo "-- COPY \"${k}\" to \"${v}\"";
         if [[ ! -f "${v}" ]]; then
