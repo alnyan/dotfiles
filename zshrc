@@ -67,7 +67,13 @@ unalias l
 alias l="ls -lh"
 alias c="clear"
 alias t="todol"
+alias ml="nvim ~/.allist"
 # Lol:
 alias :q="exit"
 
 export PATH="${PATH}:/home/alnyan/.local/bin"
+
+autoload -U compinit promptinit
+compinit
+promptinit
+zstyle ':completion::complete:*' use-cache 1
