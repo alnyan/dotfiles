@@ -138,8 +138,8 @@ bindsym $mod+r mode "resize"
 
 focus_follows_mouse off
 
-bindsym --release Print exec --no-startup-id ~/.local/bin/escrotum "Pictures/Screenshots/%Y-%m-%d_%T-\$wx\$h.png"
-bindsym --release Ctrl+Print exec --no-startup-id ~/.local/bin/escrotum -s "Pictures/Screenshots/%Y-%m-%d_%T-\$wx\$h-escrotum.png"
+bindsym --release Print exec --no-startup-id escrotum "~/Pictures/Screenshots/%Y-%m-%d_%T-\$wx\$h.png"
+bindsym --release Ctrl+Print exec --no-startup-id escrotum -s "~/Pictures/Screenshots/%Y-%m-%d_%T-\$wx\$h-escrotum.png"
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master unmute 5%+"
@@ -148,12 +148,9 @@ bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 
 bindsym control+mod1+l exec sh -c "xkb-switch -s us && xsecurelock"
 
-exec --no-startup-id feh --bg-center ~/.config/wallpaper
-exec fcitx &
-exec guake &
 exec compton -b --xrender-sync --xrender-sync-fence
 exec_always --no-startup-id i3-msg 'workspace 1; exec ~/.config/i3/polybar.sh'
-exec redshift &
+exec sh ~/.config/i3/i3rc.sh
 
 exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace-1.json'"
 exec urxvt -name URxvt.vim
