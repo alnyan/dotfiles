@@ -19,7 +19,7 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/bar]
-monitor = ${env:MONITOR:eDP1}
+monitor = ${env:MONITOR:eDP-1}
 width = 100%
 height = 24
 offset-x = -1%
@@ -156,7 +156,7 @@ type = internal/network
 interface = wlp3s0
 interval = 3.0
 
-format-connected = <label-connected> <ramp-signal> <label-connected>
+format-connected = <label-connected> <ramp-signal>
 label-connected = %essid%
 
 format-disconnected = "D"
