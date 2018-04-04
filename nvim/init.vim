@@ -33,7 +33,8 @@ set whichwrap+=<,>,h,l,[,]
 " yeah, I do use mouse sometimes
 set mouse=a
 
-let g:ycm_server_python_interpreter='/usr/bin/python2.7'
+let g:ycm_server_python_interpreter='/usr/bin/python3'
+let g:ycm_always_populate_location_list=1
 
 " all the nicest stuff is here
 call plug#begin('~/.vim/plugged')
@@ -44,6 +45,7 @@ Plug 'alvan/vim-closetag'
 Plug 'crusoexia/vim-monokai'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
+Plug 'oblitum/YouCompleteMe'
 
 call plug#end()
 
