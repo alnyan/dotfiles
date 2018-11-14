@@ -47,7 +47,7 @@ font-2 = siji:pixelsize=10;1
 
 modules-left = bspwm i3
 modules-center = xwindow
-modules-right = xbacklight volume wlan battery date
+modules-right = xbacklight volume wlan eth battery date
 
 tray-position = right
 tray-padding = 4
@@ -153,13 +153,13 @@ card = intel_backlight
 
 [module/wlan]
 type = internal/network
-interface = wlp3s0
+interface = wlan0
 interval = 3.0
 
 format-connected = <label-connected> <ramp-signal>
-label-connected = %essid%
+label-connected = W:%local_ip%@%essid%
 
-format-disconnected = "D"
+format-disconnected = "W:D"
 
 ramp-signal-0 = 0
 ramp-signal-1 = 1
@@ -170,15 +170,13 @@ ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
 type = internal/network
-interface =
+interface = eth0
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+format-connected = <label-connected>
+label-connected = E:%local_ip%
 
-format-disconnected =
+format-disconnected = "E:D"
 
 [module/date]
 type = internal/date

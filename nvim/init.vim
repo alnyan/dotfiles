@@ -29,7 +29,12 @@ set colorcolumn=100
 " make sure I know where I am
 set cursorline
 " make cursor jump to next line when reaching end of one
-set whichwrap+=<,>,h,l,[,]
+" UPD Oct 04, 2018: cursor wrapping is not needed now
+" set whichwrap+=<,>,h,l,[,]
+
+set ignorecase
+set smartcase
+
 " yeah, I do use mouse sometimes
 set mouse=a
 

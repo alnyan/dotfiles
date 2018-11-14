@@ -55,8 +55,8 @@ plugins=(archlinux git rails ruby pass python rbenv rake-fast sudo yaourt zsh-sy
 
 source $ZSH/oh-my-zsh.sh
 
-alias pacman=yaourt
 alias gcm="git commit -m"
+alias gpa="git push --all origin"
 # Lol:
 alias nano="nvim"
 # Lol:
@@ -77,3 +77,25 @@ autoload -U compinit promptinit
 compinit
 promptinit
 zstyle ':completion::complete:*' use-cache 1
+
+export EDITOR=nvim
+
+PATH="/home/alnyan/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/alnyan/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/alnyan/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/alnyan/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/alnyan/perl5"; export PERL_MM_OPT;
+
+mdc() {
+    mkdir -p $1 && cd $1;
+}
+
+alias rsync="rsync --info=progress2"
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+declare -f mdc >/dev/null
+
+unsetopt AUTO_PUSHD
+unsetopt AUTO_CD
+
+export MC_XDG_OPEN=/usr/bin/xdg-open
