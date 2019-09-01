@@ -138,28 +138,24 @@ bindsym $mod+r mode "resize"
 
 focus_follows_mouse off
 
-bindsym --release Print exec --no-startup-id escrotum "Pictures/Screenshots/%Y-%m-%d_%T-\$wx\$h.png"
-bindsym --release Ctrl+Print exec --no-startup-id /home/alnyan/.local/bin/escrotum -s "Pictures/Screenshots/%Y-%m-%d_%T-\$wx\$h-escrotum.png"
+bindsym --release Print exec --no-startup-id /home/alnyan/.local/bin/escrotum "Pictures/Screenshots/%Y-%m-%d_%T-\$wx\$h.png"
+bindsym --release Ctrl+Print exec --no-startup-id scrot -s "Pictures/Screenshots/%Y-%m-%d_%T-\$wx\$h.png"
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo lysne -d 5
 bindsym XF86MonBrightnessUp exec --no-startup-id sudo lysne -i 5
 bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master unmute 5%+"
 bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set Master unmute 5%-"
 bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+bindsym --release $mod+shift+w exec /home/alnyan/.config/i3/makeworkspace.sh
+
+bindsym XF86AudioNext exec --no-startup-id "mpc next"
+bindsym XF86AudioPrev exec --no-startup-id "mpc prev"
+bindsym XF86AudioPause exec --no-startup-id "mpc toggle"
 
 bindsym control+mod1+l exec sh -c "xkb-switch -s us && exec ~/.config/i3/i3lock.sh"
 
 exec compton -b --xrender-sync --xrender-sync-fence --backend glx --vsync opengl-mswc
 exec_always --no-startup-id i3-msg 'workspace 1; exec ~/.config/i3/polybar.sh'
 exec sh ~/.config/i3/i3rc.sh
-
-exec alnyan-notifyd;
-
-#exec ;
-
-#exec --no-startup-id "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace-1.json'"
-#exec urxvt -name URxvt.vim
-#exec urxvt -name URxvt.bottomPane
-#exec urxvt -name URxvt.rightPane
 
 for_window [class="^.*"] border pixel 0
 
