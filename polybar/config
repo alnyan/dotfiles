@@ -11,15 +11,16 @@
 
 [colors]
 background = #1C1C1C
-background-alt = #555
+background-alt = #333
 foreground = #dfdfdf
 foreground-alt = #555
-primary = #ffb52a
+primary = #FF44FF
 secondary = #e60053
 alert = #bd2c40
 
 [bar/bar]
-monitor = ${env:MONITOR:eDP-1}
+enable-ipc = true
+monitor = ${env:MONITOR:eDP1}
 width = 100%
 height = 24
 offset-x = -1%
@@ -45,19 +46,32 @@ font-0 = monospace:size=12
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
-modules-left = bspwm i3
+modules-left = i3
 modules-center = xwindow
-modules-right = volume wlan eth battery date
+modules-right = alsa wlan eth battery xkb date telegram-ipc
 
-tray-position = right
-tray-padding = 2
+tray-position = none
+;tray-padding = 2
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[module/telegram-ipc]
+type = custom/ipc
+hook-0 = echo "%{F#666 B#666}  "
+hook-1 = echo "%{B#666 F#FFF}::"
+hook-2 = echo "%{B#F00 F#FFF}##"
+initial = 1
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
+
+[module/xkb]
+type = internal/xkeyboard
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+blacklist-2 = caps lock
 
 [module/bspwm]
 type = internal/bspwm
@@ -151,14 +165,14 @@ format-disconnected = "E:D"
 type = internal/date
 interval = 5
 
-date = "%B %d, %Y"
+date = "%a, %B %d, %Y"
 
 time = %I:%M %p
 
 label = %date% / %time%
 
-[module/volume]
-type = internal/volume
+[module/alsa]
+type = internal/alsa
 
 format-volume = A:<bar-volume>
 
