@@ -4,11 +4,10 @@ filetype plugin indent on
 " should I've installed syntastic instead?
 syntax on
 
-" nice arrow-like statusbar
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 " make sure CtrlP doesn't show unnecessary stuff
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.(git|hg|svn)|buil|build|doc|node_modules)$',
+    \ 'dir': '\v[\/](\.(git|hg|svn)|buil|build|target|doc|node_modules)$',
     \ 'file': '\v\.(o)$'
     \ }
 
@@ -38,6 +37,8 @@ set smartcase
 " yeah, I do use mouse sometimes
 set mouse=a
 
+set foldlevelstart=99
+
 let g:ycm_server_python_interpreter='/usr/bin/python2'
 let g:ycm_always_populate_location_list=1
 
@@ -55,6 +56,8 @@ Plug 'crusoexia/vim-monokai'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
+Plug 'plasticboy/vim-markdown'
+Plug 'lyokha/vim-xkbswitch'
 "Plug 'oblitum/YouCompleteMe'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ARM9/arm-syntax-vim'
@@ -63,6 +66,10 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'ussrlongbow/vim-sqf'
 Plug 'Valloric/YouCompleteMe'
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+Plug 'dhruvasagar/vim-dotoo'
+Plug 'wlangstroth/vim-racket'
+
+Plug 'vim-scripts/ASL'
 
 call plug#end()
 
@@ -162,9 +169,10 @@ fun! ToggleSourceHeader()
 endfun
 
 autocmd! BufNewFile,BufRead *.vert,*.frag set ft=glsl
+autocmd! BufNewFile,BufRead *.aic set ft=aic
 autocmd BufWritePre * :call TrimWhitespace()
 noremap <silent> <F4> :call ToggleSourceHeader()<Enter>
-command -nargs=1 MD :!mkdir -p <args>
+command! -nargs=1 MD :!mkdir -p <args>
 
 " bind Ctrl+/ to comment toggling function
 noremap <silent>  :nohlsearch<Enter>
@@ -182,3 +190,23 @@ hi IndentGuidesEven     ctermbg=black
 
 noremap <silent>  :CtrlPMRUFiles<Enter>
 noremap <silent> <tab> :wincmd w<Enter>
+
+let g:XkbSwitchEnabled = 1
+let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
+let g:XkbSwitchIMappings = ['ru', 'ua']
+let g:XkbSwitchIMappingsTr = {
+          \ 'ru':
+          \ {'<': 'qwertyuiop[]asdfghjkl;''zxcvbnm,.`/'.
+          \       'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~@#$^&|',
+          \  '>': 'йцукенгшщзхъфывапролджэячсмитьбюё.'.
+          \       'ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,Ё"№;:?/'},
+          \ 'ua':
+          \ {'<': 'qwertyuiop[]asdfghjkl;''zxcvbnm,.`/'.
+          \       'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~@#$^&|',
+          \  '>': "йцукенгшщзхїфівапролджэячсмитьбю\'.".
+          \       'ЙЦУКЕНГШЩЗХЇФІВАПРОЛДЖЭЯЧСМИТЬБЮ,ʼ"№;:?/'}
+          \ }
+let g:XkbSwitchDynamicKeymap = 1
+let g:XkbSwitchNLayout = 'us'
+let b:XkbSwitchILayout = 'us'
+autocmd BufEnter * let b:XkbSwitchILayout = 'us'
