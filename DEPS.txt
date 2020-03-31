@@ -6,10 +6,6 @@ Dependencies:
 * polybar (github.com/jaagr/polybar)
 * zsh
 
-zsh dependencies:
-
-* oh-my-zsh
-
 neovim dependencies:
 
 * vim-plug (run :PlugInstall after getting plug)
