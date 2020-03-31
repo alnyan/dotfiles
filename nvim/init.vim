@@ -45,31 +45,17 @@ let g:ycm_always_populate_location_list=1
 " all the nicest stuff is here
 call plug#begin('~/.vim/plugged')
 
-Plug 'derekwyatt/vim-scala'
-Plug 'fidian/hexmode'
 Plug 'tikhomirov/vim-glsl'
-Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'alvan/vim-closetag'
 Plug 'crusoexia/vim-monokai'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
-Plug 'plasticboy/vim-markdown'
 Plug 'lyokha/vim-xkbswitch'
-"Plug 'oblitum/YouCompleteMe'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ARM9/arm-syntax-vim'
 Plug 'shirk/vim-gas'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'ussrlongbow/vim-sqf'
-Plug 'Valloric/YouCompleteMe'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
-Plug 'dhruvasagar/vim-dotoo'
 Plug 'wlangstroth/vim-racket'
-
-Plug 'vim-scripts/ASL'
 
 call plug#end()
 
