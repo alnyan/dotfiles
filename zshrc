@@ -46,7 +46,7 @@ compinit
 zstyle ':completion:*::::' completer _expand _complete _ignored
 
 # Aliases
-alias ls="ls --color -lh"
+alias ls="ls --color -lh --group-directories-first"
 alias ll=ls
 alias l=ls
 alias la="ls -a"
@@ -75,7 +75,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 MODE_CURSOR_VICMD="green block"
 MODE_CURSOR_VIINS="#20d08a blinking bar"
 MODE_CURSOR_SEARCH="#ff00ff steady underline"
-MODE_INDICATOR_VIINS='%F{15}<%F{8}INSERT<%f'
+MODE_INDICATOR_VIINS='%F{8}<%F{8}INSERT<%f'
 MODE_INDICATOR_VICMD='%F{10}<%F{2}NORMAL<%f'
 MODE_INDICATOR_REPLACE='%F{9}<%F{1}REPLACE<%f'
 MODE_INDICATOR_SEARCH='%F{13}<%F{5}SEARCH<%f'
@@ -98,11 +98,6 @@ interactive_mode_hook() {
     fi
 }
 
-q() {
-    exit
-}
-zle -N q
-
 sedr() {
     find -type f -exec sed -i $@ {} \;
 }
@@ -116,3 +111,9 @@ fi
 case $- in
     *i*) interactive_mode_hook;;
 esac
+
+export EDITOR=/usr/bin/nvim
+export VISUAL=/usr/bin/nvim
+
+# opam configuration
+test -r /home/alnyan/.opam/opam-init/init.zsh && . /home/alnyan/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
