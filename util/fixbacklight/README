@@ -1,0 +1,6 @@
+xbacklight is known to be broken with "modesetting" driver in X11 and "modesetting" one is
+actually more recommended for any intel graphics. I don't know if xbacklight is going to
+be fixed soon, so I made this small hack to make backlight work properly.
+
+Just copy .rules file to /etc/udev/rules.d or run "sudo make install_rules"
+and make sure your user is in "video" group to use this utility.
