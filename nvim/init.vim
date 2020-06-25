@@ -177,22 +177,24 @@ hi IndentGuidesEven     ctermbg=black
 noremap <silent>  :CtrlPMRUFiles<Enter>
 noremap <silent> <tab> :wincmd w<Enter>
 
-let g:XkbSwitchEnabled = 1
-let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
-let g:XkbSwitchIMappings = ['ru', 'ua']
-let g:XkbSwitchIMappingsTr = {
-          \ 'ru':
-          \ {'<': 'qwertyuiop[]asdfghjkl;''zxcvbnm,.`/'.
-          \       'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~@#$^&|',
-          \  '>': 'йцукенгшщзхъфывапролджэячсмитьбюё.'.
-          \       'ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,Ё"№;:?/'},
-          \ 'ua':
-          \ {'<': 'qwertyuiop[]asdfghjkl;''zxcvbnm,.`/'.
-          \       'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~@#$^&|',
-          \  '>': "йцукенгшщзхїфівапролджэячсмитьбю\'.".
-          \       'ЙЦУКЕНГШЩЗХЇФІВАПРОЛДЖЭЯЧСМИТЬБЮ,ʼ"№;:?/'}
-          \ }
-let g:XkbSwitchDynamicKeymap = 1
-let g:XkbSwitchNLayout = 'us'
-let b:XkbSwitchILayout = 'us'
-autocmd BufEnter * let b:XkbSwitchILayout = 'us'
+if $DISPLAY == ":0"
+    let g:XkbSwitchEnabled = 1
+    let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
+    let g:XkbSwitchIMappings = ['ru', 'ua']
+    let g:XkbSwitchIMappingsTr = {
+              \ 'ru':
+              \ {'<': 'qwertyuiop[]asdfghjkl;''zxcvbnm,.`/'.
+              \       'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~@#$^&|',
+              \  '>': 'йцукенгшщзхъфывапролджэячсмитьбюё.'.
+              \       'ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,Ё"№;:?/'},
+              \ 'ua':
+              \ {'<': 'qwertyuiop[]asdfghjkl;''zxcvbnm,.`/'.
+              \       'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~@#$^&|',
+              \  '>': "йцукенгшщзхїфівапролджэячсмитьбю\'.".
+              \       'ЙЦУКЕНГШЩЗХЇФІВАПРОЛДЖЭЯЧСМИТЬБЮ,ʼ"№;:?/'}
+              \ }
+    let g:XkbSwitchDynamicKeymap = 1
+    let g:XkbSwitchNLayout = 'us'
+    let b:XkbSwitchILayout = 'us'
+    autocmd BufEnter * let b:XkbSwitchILayout = 'us'
+endif
