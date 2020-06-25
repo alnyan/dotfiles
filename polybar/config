@@ -20,7 +20,7 @@ alert = #bd2c40
 
 [bar/bar]
 enable-ipc = true
-monitor = ${env:MONITOR:eDP-1-1}
+monitor = ${env:MONITOR:}
 width = 100%
 height = 24
 offset-x = -1%
@@ -142,7 +142,7 @@ interval = 3.0
 format-connected = <label-connected> <ramp-signal>
 label-connected = W:%local_ip%@%essid%
 
-format-disconnected = ""
+format-disconnected =
 
 ramp-signal-0 = 0
 ramp-signal-1 = 1
@@ -159,7 +159,7 @@ interval = 3.0
 format-connected = <label-connected>
 label-connected = E:%local_ip%
 
-format-disconnected = ""
+format-disconnected =
 
 [module/date]
 type = internal/date
@@ -197,8 +197,9 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery]
 type = internal/battery
-battery = BAT1
-adapter = ACAD
+# TODO: configurable battery/AC names
+battery = BAT0
+adapter = AC
 full-at = 98
 
 format-charging = CHG:<label-charging>
