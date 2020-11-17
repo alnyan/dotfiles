@@ -1,0 +1,29 @@
+# alnyan's something config
+
+font monospace 8
+focus_follows_mouse no
+
+include bindings
+
+exec_always --no-startup-id pulseuadio
+
+default_border pixel 0
+for_window [class="^.*"] border pixel 0
+
+gaps inner 4
+gaps outer 8
+
+smart_gaps on
+
+bar {
+    # Run waybar instead of swaybar
+    swaybar_command waybar
+}
+
+input * {
+    xkb_layout "us,ru,ua"
+    xkb_options "grp:win_space_toggle,caps:escape,compose:ralt"
+}
+
+workspace_auto_back_and_forth no
+xwayland on

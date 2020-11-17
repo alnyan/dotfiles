@@ -1,0 +1,120 @@
+# TODO: use layout-independent mapping
+
+# mod = Super
+set $mod Mod4
+
+### Window manipulation
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+h focus left
+
+# move panes
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h move left
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# toggle floating for window
+bindsym $mod+Shift+semicolon floating toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# change focus between tiling / floating windows
+bindsym $mod+semicolon focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit
+bindsym $mod+Shift+e exec "swaynag -t warning -m 'Exit session?' -b 'Yes' 'swaymsg exit'"
+
+mode "resize" {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### General binds
+# start a terminal
+bindsym $mod+Return exec alacritty
+
+# application runner
+bindsym $mod+d exec bemenu-run -n
+
+### Utility binds
+# Volume control
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master unmute 5%+"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set Master unmute 5%-"
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+
+# Media control
+bindsym XF86AudioNext exec --no-startup-id mpc -h ~/.config/mpd/mpd.sock next
+bindsym XF86AudioPrev exec --no-startup-id mpc -h ~/.config/mpd/mpd.sock prev
+bindsym XF86AudioPlay exec --no-startup-id mpc -h ~/.config/mpd/mpd.sock toggle
+
+# Screenshot
+bindsym Print exec grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%T).png
+bindsym --release Ctrl+Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%T).png

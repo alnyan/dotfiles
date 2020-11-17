@@ -1,0 +1,48 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-size: 12px;
+    font-family: monospace;
+    min-height: 0;
+}
+
+window#waybar {
+    background: #1C1C1C;
+    color: #ffffff;
+}
+
+window#waybar.hidden {
+    opacity: 0.0;
+}
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: #ffffff;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+    background: #333;
+    border-bottom: 3px solid #ff44ff;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#window, #pulseaudio, #network {
+    margin-bottom: 1px;
+    margin-right: 12px;
+}
+
+#language {
+    margin-bottom: -1px;
+    margin-right: 10px;
+    border-bottom: 2px solid #ff44ff;
+}
+
+#clock {
+    margin-bottom: 1px;
+    padding-right: 8px;
+    border-right: 10px solid gray;
+}

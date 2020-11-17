@@ -1,0 +1,29 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24,
+
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [
+        "sway/window"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "sway/language",
+        "clock"
+    ],
+    "pulseaudio": {
+        "format": "A:{volume}%",
+        "format-muted": "A:MUTE"
+    },
+    "network": {
+        "format-ethernet": "E:{ipaddr}",
+        "format-disconnected": "E:D"
+    },
+    "clock": {
+        "format": "{:%a, %B %d, %Y / %I:%M %p}"
+    }
+}
