@@ -30,7 +30,7 @@ window#waybar.hidden {
     background-color: #eb4d4b;
 }
 
-#window, #pulseaudio, #network {
+#battery, #window, #pulseaudio, #network {
     margin-bottom: 1px;
     margin-right: 12px;
 }

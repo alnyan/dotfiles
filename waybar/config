@@ -11,7 +11,9 @@
     ],
     "modules-right": [
         "pulseaudio",
-        "network",
+        "network#eth0",
+        "network#wlan0",
+        "battery",
         "sway/language",
         "clock"
     ],
@@ -19,9 +21,18 @@
         "format": "A:{volume}%",
         "format-muted": "A:MUTE"
     },
-    "network": {
+    "network#eth0": {
         "format-ethernet": "E:{ipaddr}",
-        "format-disconnected": "E:D"
+        "format-disconnected": "E:D",
+        "interface": "eth0"
+    },
+    "network#wlan0": {
+        "format-wifi": "W:{ipaddr}@{essid}",
+        "format-disconnected": "W:D",
+        "interface": "wlan0"
+    },
+    "battery": {
+        "format": "B:{capacity}%"
     },
     "clock": {
         "format": "{:%a, %B %d, %Y / %I:%M %p}"
