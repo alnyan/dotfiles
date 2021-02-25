@@ -45,12 +45,13 @@ let g:ycm_always_populate_location_list=1
 " all the nicest stuff is here
 call plug#begin('~/.vim/plugged')
 
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'tpope/vim-fugitive'
 Plug 'tikhomirov/vim-glsl'
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'crusoexia/vim-monokai'
 Plug 'airblade/vim-gitgutter'
-Plug 'lyokha/vim-xkbswitch'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'ARM9/arm-syntax-vim'
 Plug 'shirk/vim-gas'
@@ -69,88 +70,9 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
-" toggle source-header for C/C++
-fun! ToggleSourceHeader()
-    if &syntax == "c" || &syntax == "cpp"
-        let l:fp = expand("%")
-        let l:pidx = strridx(l:fp, '.')
-        let l:pext = strpart(l:fp, l:pidx)
-        let l:pbase = strpart(l:fp, 0, l:pidx)
-
-        if l:fp =~ "^src\/" && (l:pext == ".cpp" || l:pext == ".c")
-            let l:incdir = substitute(l:pbase, "^src\/", "include/", "g")
-
-            if l:pext == ".cpp" && filereadable(l:incdir . ".hpp")
-                execute "edit" l:incdir . ".hpp"
-                return
-            endif
-
-            if filereadable(l:incdir . ".h")
-                execute "edit" l:incdir . ".h"
-                return
-            endif
-        elseif l:fp =~ "^include\/" && (l:pext == ".hpp" || l:pext == ".h")
-            let l:srcdir = substitute(l:pbase, "^include\/", "src/", "g")
-
-            if filereadable(l:srcdir . ".cpp")
-                execute "edit" l:srcdir . ".cpp"
-                return
-            endif
-
-            if filereadable(l:srcdir . ".c")
-                execute "edit" l:srcdir . ".c"
-                return
-            endif
-        endif
-
-        " Get file type (h/c/cpp)
-        if l:pext == ".cpp" || l:pext == ".c"
-            " For .cpp's, try to search for .hpp first
-            if l:pext == ".cpp" && filereadable(l:pbase . ".hpp")
-                execute "edit" l:pbase . ".hpp"
-                return
-            endif
-
-            if filereadable(l:pbase . ".h")
-                execute "edit" l:pbase . ".h"
-                return
-            endif
-
-            echo "Could not find corresponding header: " . l:pbase . ".h!"
-        elseif l:pext == ".h" || l:pext == ".hpp" || l:pext == ".hh"
-            if filereadable(l:pbase . ".cpp")
-                execute "edit" l:pbase . ".cpp"
-                return
-            endif
-
-            if filereadable(l:pbase . ".c")
-                execute "edit" l:pbase . ".c"
-                return
-            endif
-
-            echo "Could not find corresponding source: " . l:pbase . ".c!"
-        endif
-    elseif &syntax == "glsl"
-        let l:fp = expand("%")
-        let l:pidx = strridx(l:fp, '.')
-        let l:pext = strpart(l:fp, l:pidx)
-        let l:pbase = strpart(l:fp, 0, l:pidx)
-
-        if l:pext == ".frag"
-            if filereadable(l:pbase . ".vert")
-                execute "edit" l:pbase . ".vert"
-                return
-            endif
-
-            echo "Could not find corresponding vertex shader: " . l:pbase . ".frag!"
-        elseif l:pext == ".vert"
-            if filereadable(l:pbase . ".frag")
-                execute "edit" l:pbase . ".frag"
-                return
-            endif
-
-            echo "Could not find corresponding fragment shader: " . l:pbase . ".vert!"
-        endif
+fun! AutoFmt()
+    if &syntax == "rust"
+        execute "%!rustfmt"
     endif
 endfun
 
@@ -164,7 +86,11 @@ command! -nargs=1 MD :!mkdir -p <args>
 noremap <silent>  :nohlsearch<Enter>
 inoremap <silent>  :nohlsearch<Enter>
 
-noremap <F2> :grep -r<Space>
+noremap <silent> gA :Git add %<Enter>
+noremap <silent> gC :Git commit<Enter>
+noremap <silent> gR :Gread<Enter>
+
+noremap gf :call AutoFmt()<Enter>
 
 " indent guides color
 let g:indent_guides_guide_size=1
@@ -176,25 +102,3 @@ hi IndentGuidesEven     ctermbg=black
 
 noremap <silent>  :CtrlPMRUFiles<Enter>
 noremap <silent> <tab> :wincmd w<Enter>
-
-if $DISPLAY == ":0"
-    let g:XkbSwitchEnabled = 1
-    let g:XkbSwitchLib = '/usr/local/lib/libxkbswitch.so'
-    let g:XkbSwitchIMappings = ['ru', 'ua']
-    let g:XkbSwitchIMappingsTr = {
-              \ 'ru':
-              \ {'<': 'qwertyuiop[]asdfghjkl;''zxcvbnm,.`/'.
-              \       'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~@#$^&|',
-              \  '>': 'йцукенгшщзхъфывапролджэячсмитьбюё.'.
-              \       'ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,Ё"№;:?/'},
-              \ 'ua':
-              \ {'<': 'qwertyuiop[]asdfghjkl;''zxcvbnm,.`/'.
-              \       'QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?~@#$^&|',
-              \  '>': "йцукенгшщзхїфівапролджэячсмитьбю\'.".
-              \       'ЙЦУКЕНГШЩЗХЇФІВАПРОЛДЖЭЯЧСМИТЬБЮ,ʼ"№;:?/'}
-              \ }
-    let g:XkbSwitchDynamicKeymap = 1
-    let g:XkbSwitchNLayout = 'us'
-    let b:XkbSwitchILayout = 'us'
-    autocmd BufEnter * let b:XkbSwitchILayout = 'us'
-endif
