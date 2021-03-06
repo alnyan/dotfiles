@@ -19,6 +19,10 @@ bar {
     swaybar_command waybar
 }
 
+input type:touchpad {
+    events disabled
+}
+
 input * {
     xkb_layout "us,ru,ua"
     xkb_options "grp:win_space_toggle,caps:escape,compose:ralt"
