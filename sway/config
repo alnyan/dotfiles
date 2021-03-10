@@ -6,6 +6,7 @@ focus_follows_mouse no
 include bindings
 
 exec_always --no-startup-id pulseuadio
+exec mako
 
 default_border pixel 0
 
