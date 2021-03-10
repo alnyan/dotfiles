@@ -123,5 +123,5 @@ bindsym Print exec grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%T).png
 bindsym --release Ctrl+Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%T).png
 
 # Suspend
-bindsym XF86Launch1 exec sudo pm-suspend
+bindsym XF86Launch1 exec loginctl suspend
 bindsym Ctrl+$mod+l exec swaylock --font monospace --font-size 12 -i ~/.config/wallpaper
