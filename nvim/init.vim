@@ -72,7 +72,7 @@ endfun
 
 fun! AutoFmt()
     if &syntax == "rust"
-        execute "%!rustfmt"
+        execute "%!rustfmt --edition 2018"
     endif
 endfun
 
