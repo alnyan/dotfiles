@@ -66,7 +66,7 @@ alias gaa="git add -A"
 alias mutt="date +%s>~/.mutt_check; mutt"
 alias rsync="rsync --info=progress2"
 alias pjs="python -m json.tool"
-alias sarge="sudo emerge -a --quiet-build"
+alias sarge="doas emerge -a --quiet-build"
 
 alias mpmp="pidof mpd || mpd && ncmpcpp"
 
