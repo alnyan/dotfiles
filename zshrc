@@ -77,4 +77,6 @@ export PROMPT="%F{13}%n%f@%F{14}%M%f %F{11}%~%f %# "
 
 export PATH=$HOME/.local/bin:$PATH
 
-source ~/.cargo/env
+if [ -d ~/.cargo/env ]; then
+    source ~/.cargo/env
+fi
