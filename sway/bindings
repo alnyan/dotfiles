@@ -114,9 +114,9 @@ bindsym --locked XF86MonBrightnessUp exec light -A 10
 bindsym --locked XF86MonBrightnessDown exec light -U 10
 
 # Media control
-bindsym XF86AudioNext exec --no-startup-id mpc -h ~/.config/mpd/mpd.sock next
-bindsym XF86AudioPrev exec --no-startup-id mpc -h ~/.config/mpd/mpd.sock prev
-bindsym XF86AudioPlay exec --no-startup-id mpc -h ~/.config/mpd/mpd.sock toggle
+bindsym XF86AudioNext exec --no-startup-id alplc.sh next
+bindsym XF86AudioPrev exec --no-startup-id alplc.sh prev
+bindsym XF86AudioPlay exec --no-startup-id alplc.sh toggle
 
 # Screenshot
 bindsym Print exec grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%T).png
