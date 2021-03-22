@@ -22,7 +22,7 @@ mpd_cmd() {
 
 toggle_player() {
     case "$1" in
-        "<Spotify>")
+        "<Spotify>"|"<spotify>")
             spotify_cmd PlayPause
             ;;
         "<Music Player Daemon>")
@@ -35,7 +35,7 @@ toggle_player() {
 
 next_player() {
     case "$1" in
-        "<Spotify>")
+        "<Spotify>"|"<spotify>")
             spotify_cmd Next
             ;;
         "<Music Plaer Daemon>")
@@ -48,7 +48,7 @@ next_player() {
 
 prev_player() {
     case "$1" in
-        "<Spotify>")
+        "<Spotify>"|"<spotify>")
             spotify_cmd Previous
             ;;
         "<Music Plaer Daemon>")
