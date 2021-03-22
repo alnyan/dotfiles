@@ -15,7 +15,7 @@
         "network#wlan0",
         "battery",
         "sway/language",
-        "clock"
+        "custom/time"
     ],
     "pulseaudio": {
         "format": "A:{volume}%",
@@ -34,7 +34,9 @@
     "battery": {
         "format": "B:{capacity}%"
     },
-    "clock": {
-        "format": "{:%a, %B %d, %Y / %I:%M %p}"
+    "custom/time": {
+        "format": "{}",
+        "exec": "date +\"%a, %B %d, %Y / %I:%M %p\"",
+        "interval": 2
     }
 }

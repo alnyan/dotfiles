@@ -41,7 +41,7 @@ window#waybar.hidden {
     border-bottom: 2px solid #ff44ff;
 }
 
-#clock {
+#custom-time {
     margin-bottom: 1px;
     padding-right: 8px;
     border-right: 10px solid gray;
