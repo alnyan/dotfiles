@@ -1,15 +1,15 @@
 #!/bin/sh
 
 get_players() {
-    pacmd list-sink-inputs | grep client: | cut -d' ' -f2
+    pacmd list-sink-inputs | grep client: | grep -v "<qutebrowser>" | cut -d' ' -f2
 }
 
 get_player_state() {
-    pacmd list-sink-inputs | grep "client: $1" -B12 | grep "state: " | cut -d' ' -f2
+    pacmd list-sink-inputs | grep "client: $1 " -B12 | grep "state: " | cut -d' ' -f2
 }
 
 get_player_name() {
-    pacmd list-sink-inputs | grep "client: $1" | cut -d' ' -f3-
+    pacmd list-sink-inputs | grep "client: $1 " | cut -d' ' -f3-
 }
 
 spotify_cmd() {
