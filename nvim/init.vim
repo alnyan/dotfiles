@@ -42,6 +42,7 @@ Plug 'ARM9/arm-syntax-vim'
 Plug 'shirk/vim-gas'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'wlangstroth/vim-racket'
+Plug 'cespare/vim-toml'
 
 if has('nvim-0.5')
     Plug 'neovim/nvim-lspconfig'
