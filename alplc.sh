@@ -1,7 +1,7 @@
 #!/bin/sh
 
 get_players() {
-    pacmd list-sink-inputs | grep client: | grep -v "<qutebrowser>" | cut -d' ' -f2
+    pacmd list-sink-inputs | grep -E "client: [0-9]+ <([Ss]potify|Music Player Daemon)>" | cut -d' ' -f2
 }
 
 get_player_state() {
