@@ -28,9 +28,10 @@ zmodload -a zsh/zpty zpty
 zmodload -a zsh/zprof zprof
 
 autoload colors zsh/terminfo
-
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
+bindkey "${terminfo[kcuu1]}" history-substring-search-up
+bindkey "${terminfo[cuu1]}" history-substring-search-up
+bindkey "${terminfo[kcud1]}" history-substring-search-down
+bindkey "${terminfo[cud1]}" history-substring-search-down
 
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
