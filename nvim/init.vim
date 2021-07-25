@@ -5,7 +5,7 @@ syntax on
 
 let g:airline_powerline_fonts = 0
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](\.(git|hg|svn)|buil|build|target|doc|node_modules)$',
+    \ 'dir': '\v[\/](\.(git|hg|svn)|buil|build|target|doc|node_modules|build-x86)$',
     \ 'file': '\v\.(o)$'
     \ }
 
