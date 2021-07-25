@@ -64,16 +64,17 @@ alias glog="git log"
 alias gds="git describe --always --tags --dirty"
 alias gst="git status"
 alias gaa="git add -A"
+
 alias mutt="date +%s>~/.mutt_check; mutt"
 alias rsync="rsync --info=progress2"
 alias pjs="python -m json.tool"
 alias sarge="doas emerge -a --quiet-build"
-
+alias mc="/usr/bin/mc -u"
 alias mpmp="pidof mpd || mpd && ncmpcpp"
 
 export KEYTIMEOUT=1
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+export EDITOR=nvim
+export VISUAL=nvim
 export PROMPT="%F{13}%n%f@%F{14}%M%f %F{11}%~%f %# "
 
 export PATH=$HOME/.local/bin:$PATH
