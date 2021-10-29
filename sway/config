@@ -30,5 +30,8 @@ input * {
     xkb_options "grp:win_space_toggle,caps:escape,compose:ralt"
 }
 
+output DP-1 pos 0 0 adaptive_sync on
+output HDMI-A-1 pos 1920 0 adaptive_sync on
+
 workspace_auto_back_and_forth no
 xwayland on
