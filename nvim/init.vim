@@ -43,6 +43,10 @@ Plug 'shirk/vim-gas'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'wlangstroth/vim-racket'
 Plug 'cespare/vim-toml'
+Plug 'sennavanhoek/a64asm-vim'
+Plug 'alisdair/vim-armasm'
+Plug 'freitass/todo.txt-vim'
+Plug 'eugen0329/vim-esearch'
 
 call plug#end()
 
@@ -57,6 +61,8 @@ endfun
 fun! AutoFmt()
     if &syntax == "rust"
         execute "%!rustfmt --edition 2018"
+    elseif &syntax == "cpp" || &syntax == "c"
+        execute "%!clang-format-14"
     endif
 endfun
 
@@ -67,7 +73,6 @@ noremap <silent> <F4> :call ToggleSourceHeader()<Enter>
 command! -nargs=1 MD :!mkdir -p <args>
 
 noremap <silent>  :nohlsearch<Enter>
-inoremap <silent>  :nohlsearch<Enter>
 
 noremap <silent> gA :Git add %<Enter>
 noremap <silent> gC :Git commit<Enter>
