@@ -77,7 +77,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 export PROMPT="%F{13}%n%f@%F{14}%M%f %F{11}%~%f %# "
 
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$PATH
 
 if [ -d ~/.cargo/env ]; then
     source ~/.cargo/env
