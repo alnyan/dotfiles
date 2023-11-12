@@ -20,6 +20,8 @@ noremap <silent>  :nohlsearch<Enter>
 
 " LSP
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<cr>
+nnoremap <silent> R <cmd>lua vim.lsp.buf.rename()<cr>
+nnoremap <silent> D <cmd>lua vim.lsp.buf.definition()<cr>
 
 " FZF
 nnoremap <silent>  <cmd>Files<cr>

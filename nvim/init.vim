@@ -10,7 +10,7 @@ set completeopt=menuone,noinsert,noselect
 set exrc
 set secure
 set t_Co=256
-set number
+set number relativenumber
 set numberwidth=5
 set tabstop=4
 set softtabstop=4
@@ -26,21 +26,27 @@ set mouse=a
 
 set foldlevelstart=99
 
+let g:rustfmt_autosave = 1
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-Plug 'nvim-orgmode/orgmode'
+Plug 'NoahTheDuke/vim-just'
+Plug 'nastevens/vim-cargo-make'
 
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'tamago324/nlsp-settings.nvim'
 
 Plug 'L3MON4D3/LuaSnip'
 
 Plug 'simrat39/rust-tools.nvim'
+Plug 'rust-lang/rust.vim'
+
 Plug 'neovim/nvim-lspconfig'
 
 Plug 'airblade/vim-gitgutter'
@@ -57,6 +63,7 @@ Plug 'wlangstroth/vim-racket'
 Plug 'cespare/vim-toml'
 Plug 'sennavanhoek/a64asm-vim'
 Plug 'alisdair/vim-armasm'
+Plug 'westeri/asl-vim'
 
 Plug 'tpope/vim-fireplace'
 

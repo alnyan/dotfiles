@@ -3,30 +3,34 @@ local ts_configs = require'nvim-treesitter.configs'
 local nvim_lsp = require'lspconfig'
 local rust_tools = require'rust-tools'
 local luasnip = require'luasnip'
-local orgmode = require'orgmode'
+local nlspsettings = require'nlspsettings'
 
-local parser_config = ts_parsers.get_parser_configs()
-parser_config.org = {
-    install_info = {
-        url = 'https://github.com/milisims/tree-sitter-org',
-        revision = 'f110024d539e676f25b72b7c80b0fd43c34264ef',
-        files = {'src/parser.c', 'src/scanner.cc'},
-    },
-    filetype = 'org',
-}
 ts_configs.setup {
     highlights = {
         enable = true,
-        disable = {'org'},
-        additional_vim_regex_highlighting = {'org'},
+        additional_vim_regex_highlighting = false,
     },
-    ensure_installed = {'org'}
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+nlspsettings.setup {
+    config_home = vim.fn.stdpath('config') .. '/nlsp-settings',
+    local_settings_dir = '.nlsp-settings',
+    local_settings_root_markers_fallback = { '.git' },
+    append_default_schemas = true,
+    loader = 'json'
+}
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 rust_tools.setup {
+    capabilities = capabilities
+}
+
+nvim_lsp.hls.setup {
+    capabilities = capabilities
+}
+
+nvim_lsp.zls.setup {
     capabilities = capabilities
 }
 
@@ -65,11 +69,63 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = 'orgmode' },
   },
 }
 
-orgmode.setup {
-    org_agenda_files = {'~/Documents/org/*'},
-    org_default_notes_file = '~/Documents/org/main.org'
-}
+function rs_create_module(name, as_directory)
+    local parent_module_dir = vim.api.nvim_buf_get_name(0)
+    parent_module_dir = vim.fs.dirname(parent_module_dir)
+
+    -- Find a location to insert the module reference
+    vim.fn.execute(":1")
+    local n = vim.fn.search("\\(pub\\)\\? use ")
+    local mod_text = "pub mod " .. name .. ";"
+    local location
+
+    if n == 0 then
+        location = vim.fn.line("^")
+    else
+        location = vim.fn.line(".")
+    end
+
+    vim.fn.append(location, mod_text)
+    vim.cmd("w")
+
+    if as_directory then
+        vim.cmd("!mkdir -p " .. parent_module_dir .. "/" .. name)
+        vim.cmd("edit " .. parent_module_dir .. "/" .. name .. "/mod.rs")
+    else
+        vim.cmd("edit " .. parent_module_dir .. "/" .. name .. ".rs")
+    end
+end
+
+-- Mark's custom bindings
+vim.keymap.set('n', 'gm', function()
+    if vim.bo.filetype ~= "rust" then
+        return
+    end
+
+    local name = vim.fn.input("Module name: ")
+    -- TODO check if it's a legal or nested module name?
+
+    if name == "" then
+        return
+    end
+
+    rs_create_module(name, false)
+end)
+
+vim.keymap.set('n', 'gM', function()
+    if vim.bo.filetype ~= "rust" then
+        return
+    end
+
+    local name = vim.fn.input("Module name: ")
+    -- TODO check if it's a legal or nested module name?
+
+    if name == "" then
+        return
+    end
+
+    rs_create_module(name, true)
+end)
