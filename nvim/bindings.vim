@@ -12,8 +12,14 @@ fun! AutoFmt()
     endif
 endfun
 
+fun! GitCheckoutBranchSelect(item)
+    execute 'Git checkout ' .. a:item
+endfun
+
 autocmd! BufNewFile,BufRead *.vert,*.frag set ft=glsl
 autocmd BufWritePre * :call TrimWhitespace()
+
+command! GitCheckoutBranch call fzf#run({'source': 'git branch --no-color', 'sink': function('GitCheckoutBranchSelect')})
 
 " C-/: clear current search highlight
 noremap <silent>  :nohlsearch<Enter>
@@ -33,5 +39,8 @@ nnoremap <silent> <leader>tt <cmd>edit ~/Documents/org/main.org<cr>
 
 " Custom functions
 noremap gf :call AutoFmt()<Enter>
+
+" Git stuff
+noremap <silent> gC <cmd>GitCheckoutBranch<Enter>
 
 let g:vimspector_enable_mappings = 'HUMAN'
