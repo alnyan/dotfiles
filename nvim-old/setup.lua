@@ -22,8 +22,24 @@ nlspsettings.setup {
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
+    local default_diagnostic_handler = vim.lsp.handlers[method]
+    vim.lsp.handlers[method] = function(err, result, context, config)
+        if err ~= nil and err.code == -32802 then
+            return
+        end
+        if err ~= nil and err.code == -32603 then
+            return
+        end
+        return default_diagnostic_handler(err, result, context, config)
+    end
+end
+
 rust_tools.setup {
-    capabilities = capabilities
+    capabilities = capabilities,
+    on_init = function(client)
+        client.offset_encoding = "utf-8"
+    end
 }
 
 nvim_lsp.hls.setup {
@@ -71,61 +87,3 @@ cmp.setup {
     { name = 'nvim_lsp' },
   },
 }
-
-function rs_create_module(name, as_directory)
-    local parent_module_dir = vim.api.nvim_buf_get_name(0)
-    parent_module_dir = vim.fs.dirname(parent_module_dir)
-
-    -- Find a location to insert the module reference
-    vim.fn.execute(":1")
-    local n = vim.fn.search("\\(pub\\)\\? use ")
-    local mod_text = "pub mod " .. name .. ";"
-    local location
-
-    if n == 0 then
-        location = vim.fn.line("^")
-    else
-        location = vim.fn.line(".")
-    end
-
-    vim.fn.append(location, mod_text)
-    vim.cmd("w")
-
-    if as_directory then
-        vim.cmd("!mkdir -p " .. parent_module_dir .. "/" .. name)
-        vim.cmd("edit " .. parent_module_dir .. "/" .. name .. "/mod.rs")
-    else
-        vim.cmd("edit " .. parent_module_dir .. "/" .. name .. ".rs")
-    end
-end
-
--- Mark's custom bindings
-vim.keymap.set('n', 'gm', function()
-    if vim.bo.filetype ~= "rust" then
-        return
-    end
-
-    local name = vim.fn.input("Module name: ")
-    -- TODO check if it's a legal or nested module name?
-
-    if name == "" then
-        return
-    end
-
-    rs_create_module(name, false)
-end)
-
-vim.keymap.set('n', 'gM', function()
-    if vim.bo.filetype ~= "rust" then
-        return
-    end
-
-    local name = vim.fn.input("Module name: ")
-    -- TODO check if it's a legal or nested module name?
-
-    if name == "" then
-        return
-    end
-
-    rs_create_module(name, true)
-end)

@@ -3,6 +3,9 @@
 filetype plugin indent on
 syntax on
 
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_compiler_method = 'latexrun'
+
 let g:airline_powerline_fonts = 0
 
 set completeopt=menuone,noinsert,noselect
@@ -57,6 +60,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'crusoexia/vim-monokai'
 
 Plug 'tikhomirov/vim-glsl'
+Plug 'DingDean/wgsl.vim'
 Plug 'ARM9/arm-syntax-vim'
 Plug 'shirk/vim-gas'
 Plug 'wlangstroth/vim-racket'
@@ -66,6 +70,10 @@ Plug 'alisdair/vim-armasm'
 Plug 'westeri/asl-vim'
 
 Plug 'tpope/vim-fireplace'
+
+Plug 'elkasztano/nushell-syntax-vim'
+
+Plug 'lervag/vimtex'
 
 call plug#end()
 
