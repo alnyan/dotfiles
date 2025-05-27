@@ -99,29 +99,34 @@ bindsym $mod+r mode "resize"
 
 ### General binds
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec /home/alnyan/.cargo/bin/alacritty
 
 # application runner
-bindsym $mod+d exec bemenu-run -n
+bindsym $mod+d exec PATH="$HOME/.local/bin:$PATH" bemenu-run -n
+
+# Suspend/lock
+bindsym $mod+q exec swaylock
+bindsym Ctrl+$mod+l exec "swaylock -f; systemctl suspend"
+bindswitch --reload --locked lid:on exec "swaylock -f; systemctl suspend"
 
 ### Utility binds
 # Volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master unmute 5%+"
-bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set Master unmute 5%-"
-bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id 'pactl set-sink-mute @DEFAULT_SINK@ 0; pactl set-sink-volume @DEFAULT_SINK@ +5%'
+bindsym XF86AudioLowerVolume exec --no-startup-id 'pactl set-sink-mute @DEFAULT_SINK@ 0; pactl set-sink-volume @DEFAULT_SINK@ -5%'
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym --locked XF86MonBrightnessUp exec light -A 10
-bindsym --locked XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
 
 # Media control
-bindsym XF86AudioNext exec --no-startup-id alplc.sh next
-bindsym XF86AudioPrev exec --no-startup-id alplc.sh prev
-bindsym XF86AudioPlay exec --no-startup-id alplc.sh toggle
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym Shift+$mod+n exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym Shift+$mod+v exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym Shift+$mod+b exec --no-startup-id playerctl play-pause
 
 # Screenshot
-bindsym Print exec grim ~/Pictures/Screenshots/$(date +%Y-%m-%d_%T).png
-bindsym --release Ctrl+Print exec grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%T).png
-
-# Suspend
-bindsym XF86Launch1 exec loginctl suspend
-bindsym Ctrl+$mod+l exec swaylock --font monospace --font-size 12 -i ~/.config/wallpaper
+bindsym Print exec grim - | wl-copy -t image/png
+bindsym Ctrl+Print exec grim -g "$(slurp)" - | wl-copy -t image/png
