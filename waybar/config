@@ -12,7 +12,7 @@
     "modules-right": [
         "pulseaudio",
         "network#eth0",
-        "network#wlan0",
+        "network#wlp3s0",
         "battery",
         "sway/language",
         "custom/time"
@@ -26,10 +26,10 @@
         "format-disconnected": "E:D",
         "interface": "eth0"
     },
-    "network#wlan0": {
+    "network#wlp3s0": {
         "format-wifi": "W:{ipaddr}@{essid}",
         "format-disconnected": "W:D",
-        "interface": "wlan0"
+        "interface": "wlp3s0"
     },
     "battery": {
         "format": "B:{capacity}%"

@@ -1,0 +1,5 @@
+# vi:set ft=swayconfig:
+
+for_window [title="Firefox — Sharing Indicator"] kill;
+for_window [app_id="pinentry-qt"] floating enable;
+for_window [app_id="pinentry-qt"] border csd;
