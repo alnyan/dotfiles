@@ -15,8 +15,9 @@ return {
                 sections = {
                     lualine_c = {
                         {
-                            "buffers",
-                            show_filename_only = false
+                            "filename",
+                            file_status = true,
+                            path = 1
                         }
                     }
                 }
