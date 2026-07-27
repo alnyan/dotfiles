@@ -107,7 +107,7 @@ bindsym $mod+d exec PATH="$HOME/.local/bin:$PATH" bemenu-run -n
 
 # Suspend/lock
 bindsym $mod+q exec swaylock
-bindsym Ctrl+$mod+l exec "swaylock -f; systemctl suspend"
+bindsym Ctrl+$mod+l exec "swaylock -f"
 bindswitch --reload --locked lid:on exec "swaylock -f; systemctl suspend"
 
 ### Utility binds
