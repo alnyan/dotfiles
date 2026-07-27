@@ -35,6 +35,11 @@ window#waybar.hidden {
     margin-right: 12px;
 }
 
+#battery.charging {
+    margin-bottom: -1px;
+    border-bottom: 2px solid yellow;
+}
+
 #language {
     margin-bottom: -1px;
     margin-right: 10px;
