@@ -100,7 +100,7 @@ bindsym $mod+r mode "resize"
 
 ### General binds
 # start a terminal
-bindsym $mod+Return exec /home/alnyan/.cargo/bin/alacritty
+bindsym $mod+Return exec alacritty
 
 # application runner
 bindsym $mod+d exec PATH="$HOME/.local/bin:$PATH" bemenu-run -n
@@ -117,8 +117,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id 'pactl set-sink-mute @DEFAULT_
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym XF86MonBrightnessUp exec light -A 10
-bindsym XF86MonBrightnessDown exec light -U 10
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
+
+bindsym XF86LinkPhone input type:touchpad events toggle
 
 # Media control
 bindsym XF86AudioNext exec --no-startup-id playerctl next
@@ -129,5 +131,6 @@ bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
 bindsym Shift+$mod+b exec --no-startup-id playerctl play-pause
 
 # Screenshot
-bindsym Print exec grim - | wl-copy -t image/png
-bindsym Ctrl+Print exec grim -g "$(slurp)" - | wl-copy -t image/png
+bindsym XF86Assistant exec grim - | wl-copy -t image/png
+bindsym Alt+XF86Assistant exec grim -g "$(slurp)" - | wl-copy -t image/png
+bindsym Ctrl+XF86Assistant exec grim -g "$(slurp)" - | wl-copy -t image/png
