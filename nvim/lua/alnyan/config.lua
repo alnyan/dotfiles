@@ -59,7 +59,7 @@ function ay_pipe_buffer(command)
 end
 
 function ay_format_rust()
-    ay_pipe_buffer({ "rustfmt", "--edition=2021" })
+    ay_pipe_buffer({ "rustfmt", "--edition=2024" })
 end
 
 function ay_format_zig()
@@ -84,14 +84,4 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.zig",
     callback = ay_format_zig
-})
-
-vim.api.nvim_create_autocmd("LspAttach", {
-    group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client.server_capabilities.inlayHintProvider then
-            vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-        end
-    end,
 })

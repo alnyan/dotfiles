@@ -55,20 +55,5 @@ return {
             vim.g.zig_fmt_parse_errors = 0
             vim.g.zig_fmt_autosave = 1
         end,
-    },
-    {
-        "neovim/nvim-lspconfig",
-        event = "InsertEnter",
-        config = function()
-            local lspconfig = require("lspconfig")
-
-            lspconfig.zls.setup {
-                settings = {
-                    zls = {
-                        semantic_tokens = "partial",
-                    }
-                }
-            }
-        end,
     }
 }
