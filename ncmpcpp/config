@@ -1,0 +1,5 @@
+ncmpcpp_directory = "~/.config/ncmpcpp"
+lyrics_directory = "~/.config/ncmpcpp/lyrics"
+mpd_music_dir = "~/Music"
+
+seek_time = 5
