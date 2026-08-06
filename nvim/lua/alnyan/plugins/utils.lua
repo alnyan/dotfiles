@@ -11,6 +11,7 @@ return {
             local builtin = require("telescope.builtin")
             vim.keymap.set("n", "", builtin.find_files)
             vim.keymap.set("n", "", builtin.oldfiles)
+            vim.keymap.set("n", "E", "<cmd>Telescope diagnostics bufnr=0<CR>")
             vim.keymap.set("n", "<leader>ff", builtin.live_grep)
         end
     },

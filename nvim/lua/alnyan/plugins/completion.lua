@@ -55,5 +55,15 @@ return {
             vim.g.zig_fmt_parse_errors = 0
             vim.g.zig_fmt_autosave = 1
         end,
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {
+            ensure_installed = { "basedpyright", "clangd" },
+        },
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        },
     }
 }
