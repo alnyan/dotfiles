@@ -52,6 +52,7 @@ alias l="ls -lh"
 alias la="ls -alh"
 alias grep="grep --color"
 alias rsync="rsync --info=progress2"
+alias mc="mc -u"
 # Git
 alias gst="git status"
 alias gcm="git commit"
@@ -60,6 +61,7 @@ alias gdt="git difftool"
 alias gup="git pull --rebase"
 alias gp="git push"
 alias gaa="git add -A"
+alias glog="git log"
 alias tkdiff="nvim -d"
 
 export KEYTIMEOUT=1
