@@ -2,7 +2,7 @@ return {
     {
         "mrcjkb/rustaceanvim",
         lazy = false,
-        config = function()
+        init = function()
             vim.g.rustaceanvim = {
                 server = {
                     root_dir = function(fname, default)
