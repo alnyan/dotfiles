@@ -69,3 +69,8 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 export PROMPT="%F{13}%n%f@%F{14}%M%f %F{11}%~%f %# "
+
+export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+gpg-connect-agent updatestartuptty /bye >/dev/null
