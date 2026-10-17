@@ -20,6 +20,11 @@ bar {
     swaybar_command waybar
 }
 
+input "type:touchpad" {
+    tap enabled
+    natural_scroll enabled
+}
+
 input * {
     xkb_layout "us,ru,ua"
     xkb_options "grp:win_space_toggle,caps:escape,compose:ralt"
