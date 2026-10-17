@@ -134,3 +134,4 @@ bindsym Shift+$mod+b exec --no-startup-id playerctl play-pause
 bindsym XF86Assistant exec grim - | wl-copy -t image/png
 bindsym Alt+XF86Assistant exec grim -g "$(slurp)" - | wl-copy -t image/png
 bindsym Ctrl+XF86Assistant exec grim -g "$(slurp)" - | wl-copy -t image/png
+bindsym Ctrl+Print exec grim -g "$(slurp)" - | wl-copy -t image/png
