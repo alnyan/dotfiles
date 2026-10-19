@@ -127,8 +127,8 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym Shift+$mod+n exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym Shift+$mod+v exec --no-startup-id playerctl previous
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym Shift+$mod+b exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPlay exec --no-startup-id playerctl -a play-pause
+bindsym Shift+$mod+b exec --no-startup-id playerctl -a play-pause
 
 # Screenshot
 bindsym XF86Assistant exec grim - | wl-copy -t image/png
